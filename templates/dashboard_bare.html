@@ -23,6 +23,7 @@
         <div>
             <a href="{{ file }}">{{ file.split('.')[0] }}</a>
             <input type="checkbox" name="{{ file+'_selected' }}">
+            Tags : {% for tag in form.select_tag.choices[1:] %} { {{ tag }} }{% endfor %}
         </div>
     {% endfor %}
 </form>
