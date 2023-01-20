@@ -12,7 +12,7 @@ import os
 import mistune
 import markdown
 
-from dashboard import *
+import dashboard
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -117,7 +117,7 @@ def contact():
 def dashboard():
     user_folder = os.path.join('users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
-    tags = get_user_tags(user_folder)
+    tags = get_tags(user_folder)
 
     form = DashForm()
     form.select_tag.choices = tags
@@ -157,7 +157,6 @@ def editor(file):
     html_content = partiuclar_markdown(form.markdown_text.data)
 
     return render_template('editor.html', render=html_content, form=form)
-
 
 if __name__ == '__main__':
     app.run()

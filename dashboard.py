@@ -4,6 +4,7 @@ from flask import request, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
 
+import app
 def get_tags(folder_path):
     tag_list = []
     for each in os.listdir(folder_path):
@@ -14,19 +15,23 @@ def get_tags(folder_path):
                 if not tag in tag_list:
                     tag_list.append(tag)
             return tag_list
+
+
 class DashForm(FlaskForm):
     new_question_name = StringField(render_kw={'placeholder': "New Question"})
     new_question_button = SubmitField("New Question")
     search_text = SearchField(render_kw={'placeholder': "Search"})
     search_button = SubmitField('Search')
     select_tag = SelectField('Tag', choices=['Tag'])
+
+
 class SubmitType(Enum):
     NEW = 'New'
     SEARCH = 'Search'
     AGGREGATE = 'Aggregate'
 
 
-def get_submit_type(request_form: request.form) -> SubmitType:
+def get_submit_type(request_form) -> SubmitType:
     if request_form.get('new_button') == 'New':
         return SubmitType.NEW
     elif request_form.get('search_button') == 'Search':
