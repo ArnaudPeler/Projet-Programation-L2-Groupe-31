@@ -66,6 +66,8 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 session['user'] = user.username
+                session['user_folder'] = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
+
                 return redirect(url_for('dashboard'))
             else:
                 flash("incorrect password, try again!")
@@ -113,15 +115,14 @@ def contact():
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    user_folder = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
-    user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
+    session['user_files'] = [file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md']
 
     dash_form = DashForm()
-    dash_form.select_tag.choices.extend(get_tags(user_folder))
+    dash_form.select_tag.choices.extend(get_tags(session['user_folder']))
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_new_question(dash_form.new_name.data, user_folder)
+                create_new_question(dash_form.new_name.data, session['user_folder'])
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
@@ -129,11 +130,11 @@ def dashboard():
                 print(get_selected_questions(request.form))
             case SubmitType.DELETE:
                 for each in get_selected_questions(request.form):
-                    os.unlink(os.path.join(user_folder, each))
+                    os.unlink(os.path.join(session['user_folder'], each))
                 return redirect(url_for('dashboard'))
 
 
-    return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
+    return render_template('dashboard_bare.html', user=session['user'], files=session['user_files'], form=dash_form)
 
 
 class EditorForm(FlaskForm):
@@ -144,12 +145,10 @@ class EditorForm(FlaskForm):
 @app.route('/dashboard/<file>', methods=['GET', 'POST'])
 @login_required
 def editor(file):
-    user_folder = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
-    file_path = os.path.join(user_folder, file)
+    file_path = os.path.join(session['user_folder'], file)
     form = EditorForm()
 
     if form.validate_on_submit():
-        print(form.markdown_text.data)
         with open(file_path, 'w') as markdown_file:
             markdown_file.write(form.markdown_text.data)
     else:
