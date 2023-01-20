@@ -21,15 +21,15 @@ def get_tags(folder_path: str) -> list[str]:
             for tag in file_tags:
                 if tag not in tag_list:
                     tag_list.append(tag)
-            return tag_list
+    return tag_list
 
 
 class DashForm(FlaskForm):
     """
     Le formulaire du dashboard
     """
-    new_question_name = StringField(render_kw={'placeholder': "New Question"})
-    new_question_button = SubmitField("New Question")
+    new_name = StringField(render_kw={'placeholder': "New Question"})
+    new_button = SubmitField("New Question")
     search_text = SearchField(render_kw={'placeholder': "Search"})
     search_button = SubmitField('Search')
     select_tag = SelectField('Tag', choices=['Tag'])
@@ -53,7 +53,7 @@ def get_submit_type(request_form) -> SubmitType:
     :param request_form: La variable request.form de flask.request suite à la soumission d'un formulaire
     :return: Une des valeurs de l'énumération SubmitType
     """
-    if request_form.get('new_button') == 'New':
+    if request_form.get('new_button') == 'New Question':
         return SubmitType.NEW
     elif request_form.get('search_button') == 'Search':
         return SubmitType.SEARCH

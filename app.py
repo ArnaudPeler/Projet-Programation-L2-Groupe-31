@@ -15,7 +15,7 @@ from markdown import partiuclar_markdown
 from dashboard import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(os.path.split(__file__)[0], 'database.db')
 app.config['SECRET_KEY'] = 'a-secret-key-here'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -88,7 +88,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             try:
-                os.mkdir(os.path.join('users', new_user.username))
+                os.mkdir(os.path.join(os.path.split(__file__)[0], 'users', new_user.username))
             except:
                 pass
             flash('Thanks for registering, you can now login!')
@@ -121,7 +121,8 @@ def dashboard():
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_new_question(dash_form.new_question_name, user_folder)
+                create_new_question(dash_form.new_name.data, user_folder)
+                return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
             case SubmitType.AGGREGATE:
@@ -129,6 +130,7 @@ def dashboard():
             case SubmitType.DELETE:
                 for each in get_selected_questions(request.form):
                     os.unlink(os.path.join(user_folder, each))
+                return redirect(url_for('dashboard'))
 
 
     return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
