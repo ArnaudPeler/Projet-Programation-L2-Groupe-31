@@ -7,19 +7,27 @@ from wtforms import StringField, SubmitField, SearchField, SelectField
 from markdown import detect_tag
 
 
-def get_tags(folder_path):
-    tag_list = []
+def get_tags(folder_path: str) -> list[str]:
+    """
+
+    :param folder_path: Le chemin du dossier utilisateur duquel on veut rechercher l'ensemble des tags
+    :return: La liste de l'ensemble des tags de toutes les notes markdown de l'utilisateur
+    """
+    tag_list: list[str] = []
     for each in os.listdir(folder_path):
         with open(os.path.join(folder_path, each), 'r') as file:
             file_tags = detect_tag(file.read())
         if file_tags:
             for tag in file_tags:
-                if not tag in tag_list:
+                if tag not in tag_list:
                     tag_list.append(tag)
             return tag_list
 
 
 class DashForm(FlaskForm):
+    """
+    Le formulaire du dashboard
+    """
     new_question_name = StringField(render_kw={'placeholder': "New Question"})
     new_question_button = SubmitField("New Question")
     search_text = SearchField(render_kw={'placeholder': "Search"})
@@ -29,12 +37,20 @@ class DashForm(FlaskForm):
 
 
 class SubmitType(Enum):
+    """
+    Une énumération pour aider avec le formulaire du dashboard
+    """
     NEW = 'New'
     SEARCH = 'Search'
     AGGREGATE = 'Aggregate'
 
 
 def get_submit_type(request_form) -> SubmitType:
+    """
+    Une fonction pour aider avec le formulaire du dashboard
+    :param request_form: La variable request.form de flask.request suite à la soumission d'un formulaire
+    :return: Une des valeurs de l'énumération SubmitType
+    """
     if request_form.get('new_button') == 'New':
         return SubmitType.NEW
     elif request_form.get('search_button') == 'Search':
@@ -43,7 +59,13 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.AGGREGATE
 
 
-def create_new_question(name, folder):
+def create_new_question(name, folder) -> None:
+    """
+    Une fonction pour créer une note markdown
+    :param name: nom de la note
+    :param folder: dossier où créer la note
+    :return: None
+    """
     if name == '':
         flash("Name of new question can't be empty!")
     else:
@@ -55,6 +77,11 @@ def create_new_question(name, folder):
 
 
 def get_questions_to_aggregate(request_form) -> list[str]:
+    """
+
+    :param request_form: La variable request.form de flask.request suite à la soumission d'un formulaire
+    :return: La liste des noms des fichier à utiliser pour générer un QCM
+    """
     questions = []
     for each in request_form:
         if '_selected' in each:
