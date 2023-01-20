@@ -67,6 +67,7 @@ def login():
                 login_user(user)
                 session['user'] = user.username
                 session['user_folder'] = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
+                session['filters'] = []
 
                 return redirect(url_for('dashboard'))
             else:
@@ -116,13 +117,14 @@ def contact():
 @login_required
 def dashboard():
     session['user_files'] = [file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md']
+    #session['user_files'] = filter(session['user_files'], session['filters'])
 
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(session['user_folder']))
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_new_question(dash_form.new_name.data, session['user_folder'])
+                create_new_question(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
