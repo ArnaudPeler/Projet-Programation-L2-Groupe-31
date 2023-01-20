@@ -10,8 +10,9 @@ from wtforms.validators import InputRequired, Length
 
 import os
 import mistune
-from utils import *
 import markdown
+
+from dashboard import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -108,12 +109,7 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-class DashForm(FlaskForm):
-    new_question_name = StringField(render_kw={'placeholder': "New Question"})
-    new_question_button = SubmitField("New Question")
-    search_text = SearchField(render_kw={'placeholder': "Search"})
-    search_button = SubmitField('Search')
-    select_tag = SelectField('Tag', choices=['Tag'])
+
 
 
 @app.route('/dashboard/', methods=['GET', 'POST'])
