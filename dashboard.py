@@ -4,7 +4,7 @@ from flask import request, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
 
-import app
+from markdown import detect_tag
 def get_tags(folder_path):
     tag_list = []
     for each in os.listdir(folder_path):

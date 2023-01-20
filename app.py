@@ -12,7 +12,7 @@ import os
 import mistune
 import markdown
 
-import dashboard
+from dashboard import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -109,8 +109,6 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-
-
 
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
