@@ -125,7 +125,7 @@ def dashboard():
         case SubmitType.SEARCH:
                 pass
         case SubmitType.AGGREGATE:
-                pass
+            print(get_questions_to_aggregate())
 
 
     return render_template('dashboard.html', files=user_files, form=form)

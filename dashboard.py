@@ -25,6 +25,7 @@ class DashForm(FlaskForm):
     search_text = SearchField(render_kw={'placeholder': "Search"})
     search_button = SubmitField('Search')
     select_tag = SelectField('Tag', choices=['Tag'])
+    aggregate_button = SubmitField('Aggregate')
 
 
 class SubmitType(Enum):
