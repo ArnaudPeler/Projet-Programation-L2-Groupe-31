@@ -115,19 +115,17 @@ def contact():
 def dashboard():
     user_folder = os.path.join('users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
-    tags = get_tags(user_folder)
 
     form = DashForm()
-    form.select_tag.choices = tags
+    form.select_tag.choices.extend(get_tags(user_folder))
     if form.validate_on_submit():
-        print(request.form)
-        if request.form.get('new_question_button') == 'New Question':
-            if form.new_question_name.data != '':
-                try:
-                    with open(os.path.join(user_folder, form.new_question_name.data + '.md'), 'w') as new_file:
-                        return redirect(url_for('dashboard'))
-                except:
-                    flash("A question with this name already exist!")
+       match get_submit_type(request.form):
+        case SubmitType.NEW:
+            create_new_question(form.new_question_name, user_folder)
+        case SubmitType.SEARCH:
+                pass
+        case SubmitType.AGGREGATE:
+                pass
 
 
     return render_template('dashboard.html', files=user_files, form=form)

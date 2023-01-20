@@ -5,6 +5,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
 
 from markdown import detect_tag
+
+
 def get_tags(folder_path):
     tag_list = []
     for each in os.listdir(folder_path):
@@ -49,3 +51,11 @@ def create_new_question(name, folder):
                 pass
         except FileExistsError:
             flash("A question with this name already exist!")
+
+def get_questions_to_aggregate(request_form) -> list[str]:
+    questions = []
+    for each in request_form:
+        if '_selected' in each:
+            questions.append(each.replace('_selected', ''))
+
+    return questions
