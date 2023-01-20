@@ -16,9 +16,14 @@
                 text-align: right;
                 font-weight: bold;
             }
-            .form-control{
-                width: 200px;
-                vertical-align: top;
+            a{
+                color:white
+            }
+            .a2{
+                color: black;
+            }
+            .c{
+                color:black
             }
             
     </style>
@@ -29,7 +34,10 @@
     {% block content %}
 
     <header class="py-5 mt-5">
-        <h1>HELLO {{user}}! You are loggfesed in!</h1>
+        <h1>HELLO  <span style="
+            background: linear-gradient(45deg, #ff0000ac, #ff7300a2, #fffb009c, #48ff007f, #00ffd57e, #002aff85, #7b00ff8d, #ff00c87c, #ff0000ac);
+            border-radius: 5px; "> {{user}} </span>! 
+        </h1>
     </header>
 
 
@@ -37,33 +45,46 @@
     <form method="POST">
     <div class="container">
             <div class="right-column">
-        {{ form.search_text(class_="form-control") }}
-        {{ form.search_button(class="btn-log2") }}
+                {{ form.select_tag(class_="tag-s") }}
+                {{ form.search_text(class_="form-ctrl ") }}<br>
+                {{ form.search_button(class="btn-log3") }}
             </div>
-            <div class="col">
-        {{ form.hidden_tag() }}
-                    </div>
-        <div class="py-5">
-        {{ form.new_question_name() }}
-        {{ form.new_question_button(class="btn-log2") }} 
-        <br>
-        </div>
-        {% for file in files %}
-        <div>
-            <a href="{{file}}"> {{file.split('.')[0]}} </a>
-            <input type="checkbox" name="{{ file+'_selected' }}">
-        {% endfor %}
-        </div>
-        <div class="py-5">
-            {{ form.select_tag }}
-        </div>
-    </form></div>
+
+            <div class="c">
+                {{ form.hidden_tag() }}
+            </div>
+
+            <div class="q-registered">
+                <div class="q-reg">
+                {% for file in files %}
+                    <a href="{{file}}" style="color: black; font-style: italic;"  > {{file.split('.')[0]}} </a>
+                    <input type="checkbox" name="{{ file+'_selected' }}">
+                    <br/>
+                {% endfor %}
+                </div>
+            </div>
+
+            <div class="py-5">
+                {{ form.aggregate_button(class_="btn-log4") }}
+                {{ form.delete_button(class_="btn-log4") }}
+            </div>
+
+            <div class="py-5">
+                <div class="left-column">
+                    {{ form.new_name(class_="form-control") }}
+                    {{ form.new_button(class_="btn-log4") }} 
+                </div>
+            </div>
+    <div>
+    </form>
+
 
 
     <div class="div-bot">
-    <div class="row align-self-center">
-    <button class="btn-log" type="button"><a href="{{url_for('logout')}}">Press here to logout</a></button>
-    </div></div>`
+        <div class="row align-self-center">
+            <button class="btn-log" type="button"><a href="{{url_for('logout')}}">Press here to logout</a></button>
+        </div>
+    </div>`
 
     {% endblock %}
     

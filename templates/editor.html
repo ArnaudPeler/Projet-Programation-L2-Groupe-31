@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js"></script>
-        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
-        <title>{{title}}</title>
+{% extends 'base.html' %}
 
-    </head>
-    <body>
+     
+        {% block link %}
+            <script src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" ></script>
+                <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
+        {% endblock %}
+        <style>
+            .md{
+                color:white;
+            }
+
+            .md2{
+                bottom: 50px;;
+            }
+            
+        </style>
+        {% block title %}Editor{% endblock %}
+
+    {% block content %}
+    <div class="editor">
         <form method="POST">
-            <label for="markdown_text">Redigez votre question.</label>
+            <label for="markdown_text" style=" color: white; margin: 5px; font-size:20px; text-shadow: 1px 1px 3px #fff; ">Rédigez votre question</label>
             {{ form.hidden_tag() }}
-            {{ form.markdown_text }}
+        </div>
+            <div class="md">
+                <div class="md2">   
+            {{ form.markdown_text() }}
+            </div>
+                <div class="save">
             {{ form.submit }}
+            </div>
+            </div>
         </form>
 
-        <div class="affichage">{{render|safe}}</div>
-    </body>
-</html>
+        <div class="affichage" style="color: white;">{{render|safe}}</div>
+    {% endblock %}
