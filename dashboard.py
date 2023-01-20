@@ -34,6 +34,7 @@ class DashForm(FlaskForm):
     search_button = SubmitField('Search')
     select_tag = SelectField('Tag', choices=['Tag'])
     aggregate_button = SubmitField('Aggregate')
+    delete_button = SubmitField('Delete')
 
 
 class SubmitType(Enum):
@@ -43,6 +44,7 @@ class SubmitType(Enum):
     NEW = 'New'
     SEARCH = 'Search'
     AGGREGATE = 'Aggregate'
+    DELETE = 'Delete'
 
 
 def get_submit_type(request_form) -> SubmitType:
@@ -57,6 +59,8 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.SEARCH
     elif request_form.get('aggregate_button') == 'Aggregate':
         return SubmitType.AGGREGATE
+    elif request_form.get('delete_button') == 'Delete':
+        return SubmitType.DELETE
 
 
 def create_new_question(name, folder) -> None:
@@ -76,11 +80,11 @@ def create_new_question(name, folder) -> None:
             flash("A question with this name already exist!")
 
 
-def get_questions_to_aggregate(request_form) -> list[str]:
+def get_selected_questions(request_form) -> list[str]:
     """
 
     :param request_form: La variable request.form de flask.request suite à la soumission d'un formulaire
-    :return: La liste des noms des fichier à utiliser pour générer un QCM
+    :return: La liste des noms du fichier sélectionnés
     """
     questions = []
     for each in request_form:

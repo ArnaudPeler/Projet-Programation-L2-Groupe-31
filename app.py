@@ -10,7 +10,7 @@ from wtforms.validators import InputRequired, Length
 
 import os
 import mistune
-import markdown
+from markdown import partiuclar_markdown
 
 from dashboard import *
 
@@ -125,7 +125,10 @@ def dashboard():
             case SubmitType.SEARCH:
                 pass
             case SubmitType.AGGREGATE:
-                print(get_questions_to_aggregate())
+                print(get_selected_questions(request.form))
+            case SubmitType.DELETE:
+                for each in get_selected_questions(request.form):
+                    os.unlink(os.path.join(user_folder, each))
 
 
     return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
