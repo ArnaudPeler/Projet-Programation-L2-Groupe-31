@@ -5,23 +5,21 @@ from flask import request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
 
-from markdown import detect_tag
 
-
-def get_tags(folder_path: str) -> list[str]:
+from files import File, spawn_file, get_file_from_name
+def get_tags(files: list[File]) -> list[str]:
     """
 
-    :param folder_path: Le chemin du dossier utilisateur duquel on veut rechercher l'ensemble des tags
+    :param files: La liste des fichiers desquelles on cherche l'ensemble des tags
     :return: La liste de l'ensemble des tags de toutes les notes markdown de l'utilisateur
     """
-    tag_list: list[str] = []
-    for each in os.listdir(folder_path):
-        with open(os.path.join(folder_path, each), 'r') as file:
-            file_tags = detect_tag(file.read())
-        if file_tags:
-            for tag in file_tags:
-                if tag not in tag_list:
-                    tag_list.append(tag)
+    tag_list = []
+    for file in files:
+        for tag in file[2] or []: # file[2] = file.tags
+            if tag not in tag_list:
+                tag_list.append(tag)
+
+    tag_list.sort()
     return tag_list
 
 
@@ -64,7 +62,7 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.DELETE
 
 
-def create_new_question(name) -> None:
+def create_file(name) -> None:
     """
     Une fonction pour créer une note markdown
     :param name: nom de la nouvelle note
@@ -74,27 +72,31 @@ def create_new_question(name) -> None:
         flash("Name of new question can't be empty or contain '.'!")
     else:
         try:
-            with open(os.path.join(session['user_folder'], name + '.md'), 'x') as new_file:
-                pass
+            with open(os.path.join(session['user_folder'], name + '.md'), 'x'):
+                session['user_files'] = session['user_files'] + [spawn_file(name+'.md')] # La session qui casse les couilles
+
         except FileExistsError:
             flash("A question with this name already exist!")
 
+def delete_files(files: list[File]) -> None:
+    for file in files:
+        session['user_files'] = [each for each in session['user_files'] if each != file] # La session qui casse les couilles
 
-def get_selected_questions(request_form) -> list[str]:
+        os.unlink(file[1])
+
+def get_selected_files(request_form) -> list[File]:
     """
 
     :param request_form: La variable request.form de flask.request suite à la soumission d'un formulaire
-    :return: La liste des noms du fichier sélectionnés
+    :return: La liste des fichier sélectionnés
     """
-    questions = []
+    file_list = []
     for each in request_form:
         if '_selected' in each:
-            questions.append(each.replace('_selected', ''))
+            file_list.append(each.replace('_selected', ''))
 
-    return questions
+    return [get_file_from_name(file) for file in file_list]
 
-def get_files_paths(files: list[str]) -> list[str]:
-    return [os.path.join(session['user_folder'], file) for file in files]
 
 class FilterType(Enum):
     TAG = 'Tag'
