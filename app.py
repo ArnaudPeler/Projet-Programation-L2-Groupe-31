@@ -124,24 +124,11 @@ def dashboard():
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(session['user_files']))
     if dash_form.validate_on_submit():
-<<<<<<< HEAD
-=======
-    
-    form = DashForm()
-    form.select_tag.choices.extend(get_tags(user_folder))
-    if form.validate_on_submit():
->>>>>>> Stashed changes
-       match get_submit_type(request.form):
-        case SubmitType.NEW:
-            create_new_question(dash_form.new_question_name, user_folder)
-        case SubmitType.SEARCH:
-=======
         match get_submit_type(request.form):
             case SubmitType.NEW:
                 create_file(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
->>>>>>> master
                 pass
             case SubmitType.AGGREGATE:
                 print(get_selected_files(request.form))
