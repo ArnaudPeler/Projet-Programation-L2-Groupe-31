@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+    {% block style %}
+    <style>
+            h1{
+                color: white;
+                font: Arial, Helvetica, sans-serif;
+                font-size: 300%;
+                text-align: center;
+            }
+            
+    </style>
+    {% endblock %}
+
+    {% block title %} Dashboard {% endblock %}
+
+    {% block content %}
+
+    <header class="py-5 mt-5">
+        <h1>HELLO {{user}}! You are logged in!</h1>
+    </header>
+
+    <form method="POST">
+        <div class="py-5">
+            {{ form.search_text() }}
+            {{ form.search_button(class="btn-log2") }}
+        </div>
+        <div class="py-5 col-md-12">
+            {{ form.select_tag }}
+        </div>
+    </form>
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="py-5">
+        {{ form.new_question_name() }}
+        {{ form.new_question_button(class="btn-log2") }} 
+        <br></div>
+        
+        
+        {% for file in files %}
+        <div>
+            <a href="{{file}}"> {{file.split('.')[0]}} </a>
+            <input type="checkbox" name="{{ file+'_selected' }}">
+        {% endfor %}
+        </div>
+    </form>
+
+
+    <div class="div-bot">
+    <div class="row align-self-center">
+    <button class="btn-log" type="button"><a href="{{url_for('logout')}}">Press here to logout</a></button>
+    </div></div>`
+
+    {% endblock %}
+    
+

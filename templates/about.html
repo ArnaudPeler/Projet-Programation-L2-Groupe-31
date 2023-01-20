@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block style%}
+
+{% endblock%}
+{% block content %}
+<div class="container">
+    <div class="pt-5" text-white>
+        <header class="py-5 mt-5">
+            <div class="display-4 font-weight-bold h1">The student</div>
+        </header>
+    </div>
+<div class="sub_div">
+    <div class="navbar">
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="#about" class="active">About</a>
+        <a href="{{url_for('contact')}}">Contact</a>
+    </div>
+</div></div>
+
+{% endblock %}
+

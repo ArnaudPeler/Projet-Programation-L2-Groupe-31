@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title%} Contact {% endblock %}
+
+{% block style%}
+
+<style>
+    .h6{
+        color:white;
+    }
+    h1{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 350%;
+        text-align: center;
+        text-shadow: 1px 1px 3px #44a1b8;
+    }
+    h2{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 200%;
+        text-align: center;
+        text-shadow: 1px 1px 3px #567982;
+        background: linear-gradient(45deg, #ff0000ac, #ff7300a2, #fffb009c, #48ff007f, #00ffd57e, #002aff85, #7b00ff8d, #ff00c87c, #ff0000ac); 
+        animation: glowing 20s linear infinite;
+        transition: opacity .3s ease-in-out;
+        border-radius: 10px;
+        
+    }
+    @keyframes glowing {
+        0% { background-position: 0 0; }
+        50% { background-position: 400% 0; }
+        100% { background-position: 0 0; }
+    }
+    
+        
+        
+
+</style>
+{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <div class="py-5 mt-3">
+    <div class="w3-container w3-center animate-top">
+        <h1>The minds behind this app</h1>
+      </div>
+      </div>
+    <div class="py-4 mt-2">
+        <div class="w3-container w3-center animate-top2">
+            <h2>Mickaël<br/><div class="h6">mickael.longlade@etu.umontpellier.fr</div></h2>
+        </div>
+    </div>
+    <div class="py-4 mt-2">
+        <div class="w3-container w3-center animate-top3">
+            <h2>Mouna<br/><div class="h6">abir-amina.hammoud@etu.umontpellier.fr</div></h2>
+        </div>
+    </div>
+    <div class="py-4 mt-2">
+        <div class="w3-container w3-center animate-top4">
+            <h2>Arnaud<br/><div class="h6">arnaud.pellier@etu.umontpellier.fr</div></h2>
+                
+        </div>
+    </div><div class="py-4 mt-2">
+        <div class="w3-container w3-center animate-top5">
+            <h2>Anaïs<br/><div class="h6">anais.mackow@etu.umontpellier.fr</div></h2>
+        </div>
+    </div>
+
+
+        <div class="navbar">
+            <a href="{{url_for('home')}}">Home</a>
+            <a href="{{url_for('about')}}">About</a>
+            <a href="#contact" class="active">Contact</a>
+        </div>
+
+</div>
+
+{% endblock %}
