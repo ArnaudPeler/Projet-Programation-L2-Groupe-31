@@ -1,6 +1,6 @@
 import os
 from enum import Enum
-from flask import request, flash
+from flask import request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
 
@@ -63,18 +63,17 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.DELETE
 
 
-def create_new_question(name, folder) -> None:
+def create_new_question(name) -> None:
     """
     Une fonction pour créer une note markdown
-    :param name: nom de la note
-    :param folder: dossier où créer la note
+    :param name: nom de la nouvelle note
     :return: None
     """
     if name == '':
         flash("Name of new question can't be empty!")
     else:
         try:
-            with open(os.path.join(folder, name + '.md'), 'x') as new_file:
+            with open(os.path.join(session['user_folder'], name + '.md'), 'x') as new_file:
                 pass
         except FileExistsError:
             flash("A question with this name already exist!")
@@ -92,3 +91,6 @@ def get_selected_questions(request_form) -> list[str]:
             questions.append(each.replace('_selected', ''))
 
     return questions
+
+def get_files_paths(files: list[str]) -> list[str]:
+    return [os.path.join(session['user_folder'], file) for file in files]
