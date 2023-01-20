@@ -113,7 +113,7 @@ def contact():
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    user_folder = os.path.join('users', session['user'])
+    user_folder = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
 
     dash_form = DashForm()
@@ -155,4 +155,4 @@ def editor(file):
     return render_template('editor.html', render=html_content, form=form)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
