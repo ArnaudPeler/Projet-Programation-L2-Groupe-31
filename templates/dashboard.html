@@ -5,8 +5,20 @@
             h1{
                 color: white;
                 font: Arial, Helvetica, sans-serif;
-                font-size: 300%;
+
                 text-align: center;
+            }
+            .left-column{
+                text-align: left;
+                font-weight: bold;
+            }
+            .right-column{
+                text-align: right;
+                font-weight: bold;
+            }
+            .form-control{
+                width: 200px;
+                vertical-align: top;
             }
             
     </style>
@@ -17,18 +29,20 @@
     {% block content %}
 
     <header class="py-5 mt-5">
-        <h1>HELLO {{user}}! You are logged in!</h1>
+        <h1>HELLO {{user}}! You are loggfesed in!</h1>
     </header>
 
 
 
     <form method="POST">
-
-        {{ form.search_text() }}
+    <div class="container">
+            <div class="right-column">
+        {{ form.search_text(class_="form-control") }}
         {{ form.search_button(class="btn-log2") }}
-
+            </div>
+            <div class="col">
         {{ form.hidden_tag() }}
-
+                    </div>
         <div class="py-5">
         {{ form.new_question_name() }}
         {{ form.new_question_button(class="btn-log2") }} 
@@ -43,7 +57,7 @@
         <div class="py-5">
             {{ form.select_tag }}
         </div>
-    </form>
+    </form></div>
 
 
     <div class="div-bot">
