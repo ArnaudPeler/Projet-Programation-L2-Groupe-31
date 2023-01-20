@@ -8,14 +8,24 @@
 
 <form method="POST">
     {{ form.hidden_tag() }}
-    {{ form.new_question_name }}
-    {{ form.new_question_button }}
+    {{ form.new_name }}
+    {{ form.new_button }}
     <br>
     {{ form.search_text }}
     {{ form.search_button }}
     {{ form.select_tag }}
     <br>
     {{ form.aggregate_button }}
+    {{ form.delete_button }}
+    <br>
+    <h1>Notes Markdown</h1>
+    {% for file in files %}
+        <div>
+            <a href="{{ file }}">{{ file.split('.')[0] }}</a>
+            <input type="checkbox" name="{{ file+'_selected' }}">
+            Tags : {% for tag in form.select_tag.choices[1:] %} { {{ tag }} }{% endfor %}
+        </div>
+    {% endfor %}
 </form>
 
 </body>
