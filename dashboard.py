@@ -1,5 +1,6 @@
 import os
 from enum import Enum
+from typing import NamedTuple
 from flask import request, flash, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SearchField, SelectField
@@ -32,7 +33,7 @@ class DashForm(FlaskForm):
     new_button = SubmitField("New Question")
     search_text = SearchField(render_kw={'placeholder': "Search"})
     search_button = SubmitField('Search')
-    select_tag = SelectField('Tag', choices=['Tag'])
+    select_tag = SelectField('All Tags', choices=['Tag'])
     aggregate_button = SubmitField('Aggregate')
     delete_button = SubmitField('Delete')
 
@@ -69,8 +70,8 @@ def create_new_question(name) -> None:
     :param name: nom de la nouvelle note
     :return: None
     """
-    if name == '':
-        flash("Name of new question can't be empty!")
+    if name == '' or '.' in name:
+        flash("Name of new question can't be empty or contain '.'!")
     else:
         try:
             with open(os.path.join(session['user_folder'], name + '.md'), 'x') as new_file:
@@ -94,3 +95,17 @@ def get_selected_questions(request_form) -> list[str]:
 
 def get_files_paths(files: list[str]) -> list[str]:
     return [os.path.join(session['user_folder'], file) for file in files]
+
+class FilterType(Enum):
+    TAG = 'Tag'
+    Name = 'Name'
+class Filter(NamedTuple):
+    type: FilterType
+    value: str
+
+
+def filter(files: list[str], filter_list: list[Filter]):
+    filtered_files = []
+    for each in files:
+        pass
+
