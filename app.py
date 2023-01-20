@@ -119,13 +119,13 @@ def dashboard():
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(user_folder))
     if dash_form.validate_on_submit():
-       match get_submit_type(request.form):
-        case SubmitType.NEW:
-            create_new_question(dash_form.new_question_name, user_folder)
-        case SubmitType.SEARCH:
+        match get_submit_type(request.form):
+            case SubmitType.NEW:
+                create_new_question(dash_form.new_question_name, user_folder)
+            case SubmitType.SEARCH:
                 pass
-        case SubmitType.AGGREGATE:
-            print(get_questions_to_aggregate())
+            case SubmitType.AGGREGATE:
+                print(get_questions_to_aggregate())
 
 
     return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
