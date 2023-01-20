@@ -52,6 +52,7 @@ def create_new_question(name, folder):
         except FileExistsError:
             flash("A question with this name already exist!")
 
+
 def get_questions_to_aggregate(request_form) -> list[str]:
     questions = []
     for each in request_form:
