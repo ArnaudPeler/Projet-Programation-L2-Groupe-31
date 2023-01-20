@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard: {{ user}}</title>
+</head>
+<body>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.new_question_name }}
+    {{ form.new_question_button }}
+    <br>
+    {{ form.search_text }}
+    {{ form.search_button }}
+    {{ form.select_tag }}
+    <br>
+    {{ form.aggregate_button }}
+</form>
+
+</body>
+</html>

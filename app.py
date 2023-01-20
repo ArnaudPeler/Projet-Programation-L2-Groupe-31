@@ -116,19 +116,19 @@ def dashboard():
     user_folder = os.path.join('users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
 
-    form = DashForm()
-    form.select_tag.choices.extend(get_tags(user_folder))
-    if form.validate_on_submit():
+    dash_form = DashForm()
+    dash_form.select_tag.choices.extend(get_tags(user_folder))
+    if dash_form.validate_on_submit():
        match get_submit_type(request.form):
         case SubmitType.NEW:
-            create_new_question(form.new_question_name, user_folder)
+            create_new_question(dash_form.new_question_name, user_folder)
         case SubmitType.SEARCH:
                 pass
         case SubmitType.AGGREGATE:
             print(get_questions_to_aggregate())
 
 
-    return render_template('dashboard.html', files=user_files, form=form)
+    return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
 
 
 class EditorForm(FlaskForm):
@@ -139,7 +139,7 @@ class EditorForm(FlaskForm):
 @app.route('/dashboard/<file>', methods=['GET', 'POST'])
 @login_required
 def editor(file):
-    user_folder = os.path.join('users', session['user'])
+    user_folder = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
     file_path = os.path.join(user_folder, file)
     form = EditorForm()
 
