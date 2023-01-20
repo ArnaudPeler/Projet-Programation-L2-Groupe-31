@@ -11,7 +11,7 @@ from wtforms.validators import InputRequired, Length
 import os
 import mistune
 from markdown import partiuclar_markdown
-
+from files import spawn_files, File
 from dashboard import *
 
 app = Flask(__name__)
@@ -66,7 +66,10 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 session['user'] = user.username
+                # user_folder = root_app_folder/users/user_name
                 session['user_folder'] = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
+                # user_files = spawn_files(markdown_files in user_folder)
+                session['user_files'] = spawn_files([file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md'])
                 session['filters'] = []
 
                 return redirect(url_for('dashboard'))
@@ -116,25 +119,22 @@ def contact():
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    session['user_files'] = [file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md']
-    #session['user_files'] = filter(session['user_files'], session['filters'])
 
     dash_form = DashForm()
-    dash_form.select_tag.choices.extend(get_tags(session['user_folder']))
+    dash_form.select_tag.choices.extend(get_tags(session['user_files']))
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_new_question(dash_form.new_name.data)
+                create_file(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
             case SubmitType.AGGREGATE:
-                print(get_selected_questions(request.form))
+                print(get_selected_files(request.form))
             case SubmitType.DELETE:
-                for each in get_selected_questions(request.form):
-                    os.unlink(os.path.join(session['user_folder'], each))
+                print(get_selected_files(request.form))
+                delete_files(get_selected_files(request.form))
                 return redirect(url_for('dashboard'))
-
 
     return render_template('dashboard_bare.html', user=session['user'], files=session['user_files'], form=dash_form)
 
