@@ -7,10 +7,10 @@ from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SearchField, SelectField
 from wtforms.validators import InputRequired, Length
-
+from mistune import *
+from markdown import *
 import os
-import mistune
-import markdown
+
 
 from dashboard import *
 
@@ -54,7 +54,7 @@ class LoginForm(FlaskForm):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -115,10 +115,17 @@ def contact():
 def dashboard():
     user_folder = os.path.join('users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
+<<<<<<< Updated upstream
 
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(user_folder))
     if dash_form.validate_on_submit():
+=======
+    
+    form = DashForm()
+    form.select_tag.choices.extend(get_tags(user_folder))
+    if form.validate_on_submit():
+>>>>>>> Stashed changes
        match get_submit_type(request.form):
         case SubmitType.NEW:
             create_new_question(dash_form.new_question_name, user_folder)
