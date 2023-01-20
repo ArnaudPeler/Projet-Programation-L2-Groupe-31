@@ -26,7 +26,9 @@ class particularBlock_renderer(mistune.HTMLRenderer):
             return reponse_html(mistune.escape(code))
         elif(re.match("\$\$(.)*\$\$", code)):
             return "<span class='math>'"+code+"</span>"
+        
+            
 
 
 
-partiuclar_markdown=mistune.create_markdown(renderer=particularBlock_renderer())
+particular_markdown=mistune.create_markdown(renderer=particularBlock_renderer())

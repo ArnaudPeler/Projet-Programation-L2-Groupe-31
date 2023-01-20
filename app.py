@@ -150,9 +150,10 @@ def editor(file):
     else:
         with open(file_path, 'r') as markdown_file:
             form.markdown_text.data = markdown_file.read()
-    html_content = partiuclar_markdown(form.markdown_text.data)
+    html_content = particular_markdown(form.markdown_text.data)
 
     return render_template('editor.html', render=html_content, form=form)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8888)
+
