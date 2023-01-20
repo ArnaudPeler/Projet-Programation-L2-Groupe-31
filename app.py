@@ -113,13 +113,14 @@ def contact():
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    user_folder = os.path.join('users', session['user'])
+    user_folder = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
     user_files = [file for file in os.listdir(user_folder) if file.split('.')[1] == 'md']
 <<<<<<< Updated upstream
 
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(user_folder))
     if dash_form.validate_on_submit():
+<<<<<<< HEAD
 =======
     
     form = DashForm()
@@ -130,9 +131,15 @@ def dashboard():
         case SubmitType.NEW:
             create_new_question(dash_form.new_question_name, user_folder)
         case SubmitType.SEARCH:
+=======
+        match get_submit_type(request.form):
+            case SubmitType.NEW:
+                create_new_question(dash_form.new_question_name, user_folder)
+            case SubmitType.SEARCH:
+>>>>>>> master
                 pass
-        case SubmitType.AGGREGATE:
-            print(get_questions_to_aggregate())
+            case SubmitType.AGGREGATE:
+                print(get_questions_to_aggregate())
 
 
     return render_template('dashboard_bare.html', user=session['user'], files=user_files, form=dash_form)
@@ -162,4 +169,4 @@ def editor(file):
     return render_template('editor.html', render=html_content, form=form)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
