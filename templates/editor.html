@@ -18,12 +18,12 @@
     {% block content %}
     <div class="editor">
         <form method="POST">
-            <label for="markdown_text" style=" color: white; margin: 5px; font-size:20px; text-shadow: 1px 1px 3px #fff; ">Rédigez votre question</label>
+            <label for="markdown_text" style=" color: white; margin: 5px; font-size:20px;">Rédigez votre question</label>
             {{ form.hidden_tag() }}
         </div>
             <div class="md">
                 <div class="md2">   
-            {{ form.markdown_text() }}
+            {{ form.markdown_text(rows=10, style="width:90%;") }}
             </div>
                 <div class="save">
             {{ form.submit(class_="btn-log5") }}
@@ -31,5 +31,5 @@
             </div>
         </form>
 
-        <div class="affichage" style="color: white;">{{render|safe}}</div>
+        <div class="affichage" style="color: black;">{{render|safe}}</div>
     {% endblock %}
