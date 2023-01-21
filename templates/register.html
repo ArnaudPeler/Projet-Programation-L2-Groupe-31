@@ -20,7 +20,7 @@
             <div class="w3-container w3-center animate-top2">
             <div class="row p-5 justify-content-center">
                 {% for message in get_flashed_messages() %}
-                <h5>{{ message }}</h5>
+                <h6>{{ message }}</h6>
                 {% endfor %}
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
