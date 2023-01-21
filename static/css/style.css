@@ -22,6 +22,7 @@ footer{
     font-size: 400%;
     text-align: center;
     text-shadow: 1px 1px 3px #567982;
+    position: relative;
 }
 a {
     text-decoration: none !important;
@@ -32,7 +33,10 @@ a {
 h5{
     color:red;
     font-size:100%;
-    text-shadow: 1px 1px 3px #c61414
+    text-shadow: 1px 1px 3px #c61414;
+    position: fixed;
+    top: 45%;
+ 
 }
 #bottom{
     position: absolute;
@@ -41,10 +45,26 @@ h5{
 
 .form-control{
     background-color: whitesmoke;
+    position: relative; 
+    width: 400px;
+    height: 40px;
+    margin-top: 00px;
 
 }
 
 .btn-log{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+    
+}
+button{
     width: 220px;
     height: 50px;
     border: none;
@@ -53,10 +73,9 @@ h5{
     background: #111;
     cursor: pointer;
     position: relative;
-    z-index: 0;
     border-radius: 10px;
+    margin-top: -120px;
 }
-
 .btn-log:before {
     content: '';
     background: linear-gradient(45deg, #ff0000ac, #ff7300a2, #fffb009c, #48ff007f, #00ffd57e, #002aff85, #7b00ff8d, #ff00c87c, #ff0000ac);
@@ -111,14 +130,16 @@ h5{
     }
 
 
-
     .navbar {
         overflow: hidden;
         position: fixed;
         bottom: 0;
-        margin: 5px;
-        width: 85%;
+        margin: 0%;
+        width: 78%;
+        
     }
+
+    
 
     .topnav{
         overflow: hidden;
@@ -277,4 +298,64 @@ h5{
             0% { background-position: 0 0; }
             50% { background-position: 400% 0; }
             100% { background-position: 0 0; }
+        }
+
+        @media only screen and (max-width :700px){
+            .navbar{
+                width: 100%;
+                position: absolute;
+                display: flex;
+                overflow: hidden;
+                position: fixed;
+                bottom: 0;
+                margin: 0%;
+                width: 75%;
+                text-align: center;
+                
+            }
+            .button.btn-log{
+                width: 220px;
+                height: 50px;
+                border: none;
+                outline: none;
+                color: #fff;
+                background: #111;
+                cursor: pointer;
+                position: fixed;
+                border-radius: 10px;
+                
+            }
+            button{
+                width: 220px;
+                height: 50px;
+                border: none;
+                outline: none;
+                color: #fff;
+                background: #111;
+                cursor: pointer;
+                position: relative;
+                border-radius: 10px;
+            }
+            .form-control{
+                background-color: whitesmoke;
+                position: relative; 
+                width: 220px;
+                height: 40px;
+                margin-top: -5px;
+            
+            }
+            .btn-log{
+                width: 220px;
+                height: 50px;
+                border: none;
+                outline: none;
+                color: #fff;
+                background: #111;
+                cursor: pointer;
+                position: relative;
+                border-radius: 10px;
+                
+                
+            }
+           
         }

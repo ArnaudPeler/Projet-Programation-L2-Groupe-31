@@ -3,17 +3,13 @@
     <head>
         <script src="https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script>
         <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
-        <title>{{title}}</title>
+        <title>Preview</title>
 
     </head>
     <body>
-        <form method="POST">
-            <label for="markdown_text">Redigez votre question.</label>
-            {{ form.hidden_tag() }}
-            {{ form.markdown_text }}
-            {{ form.submit }}
+        <form>
+            <input type="submit" value="Imprimer"/>
         </form>
-
-        <div class="affichage">{{render|safe}}</div>
+        {{body|safe}}
     </body>
 </html>

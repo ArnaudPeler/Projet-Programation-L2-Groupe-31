@@ -21,9 +21,9 @@
     <h1>Notes Markdown</h1>
     {% for file in files %}
         <div>
-            <a href="{{ file }}">{{ file.split('.')[0] }}</a>
-            <input type="checkbox" name="{{ file+'_selected' }}">
-            Tags : {% for tag in form.select_tag.choices[1:] %} { {{ tag }} }{% endfor %}
+            <a href="{{ file[0] }}">{{ file[0].split('.')[0] }}</a>
+            <input type="checkbox" name="{{ file[0]+'_selected' }}">
+            Tags : {% for tag in file[2] or [] %} { {{ tag }} }{% endfor %}
         </div>
     {% endfor %}
 </form>
