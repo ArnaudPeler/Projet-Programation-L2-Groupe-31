@@ -4,7 +4,7 @@
             
         </style>
     {% endblock%}
-    {% block title%} fEUR. {% endblock %}
+    {% block title%} Welcome {% endblock %}
 
     {% block content %} 
 
@@ -20,10 +20,10 @@
         <div class="py-5">
             <div class="py-5">
                 <div class="col-md-12 text-center mb-5">
-                    <button class="btn-log" type="button"><a target="_blank" href="{{url_for('login')}}">Log In Page</a></button><br>
+                    <button class="btn-log" type="button"><a href="{{url_for('login')}}">Log In Page</a></button><br>
                 </div>
                 <div class="col-md-12 text-center">
-                <button class="btn-log" type="button"><a target="_blank" href="{{url_for('register')}}">Register Page</a></button><br>
+                <button class="btn-log" type="button"><a href="{{url_for('register')}}">Register Page</a></button><br>
                 </div>
             </div>
         </div>
@@ -40,4 +40,5 @@
 
     {% endblock %}
 </body>
+>>>>>>> master
 </html>
