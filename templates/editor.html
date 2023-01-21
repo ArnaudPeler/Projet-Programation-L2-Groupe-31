@@ -1,18 +1,16 @@
+
 {% extends 'base.html' %}
 
-     
-        {% block link %}
-            <script src="https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js" ></script>
-                <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
+        {% block link %}  
+        <script src="https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
         {% endblock %}
         <style>
             .md{
-                color:white;
+                color:black;
             }
 
-            .md2{
-                bottom: 50px;;
-            }
+            
             
         </style>
         {% block title %}Editor{% endblock %}
@@ -28,7 +26,7 @@
             {{ form.markdown_text() }}
             </div>
                 <div class="save">
-            {{ form.submit }}
+            {{ form.submit(class_="btn-log5") }}
             </div>
             </div>
         </form>

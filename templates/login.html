@@ -19,11 +19,12 @@
                 
             </header>
         </div>
-        <div class="row p-5 justify-content-center">
-        {% for message in get_flashed_messages() %}
-        <h5>{{ message }}</h5>
-        {% endfor %}</div>
+        <div class="row p-5 justify-content-center w3-container w3-center animate-top2">
+            {% for message in get_flashed_messages() %}
+            <h6>{{ message }}</h6>
+            {% endfor %}</div>
             <div class="w3-container w3-center animate-top2">
+                
             <div class="row p-5 justify-content-center">
                 <form method="POST" action="" class="form-group" >
                     

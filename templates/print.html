@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+    {% block link%}
+        <script src="https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
+        {% endblock %}
+        {% block title %}Preview{% endblock %}
+
+    {% block content %}
+        <form>
+            <input type="submit" value="Imprimer"/>
+        </form>
+        {{body|safe}}
+    
+    
+        {% endblock%}

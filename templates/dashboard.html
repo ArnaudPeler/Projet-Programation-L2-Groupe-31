@@ -34,9 +34,8 @@
     {% block content %}
 
     <header class="py-5 mt-5">
-        <h1>HELLO  <span style="
-            background: linear-gradient(45deg, #ff0000ac, #ff7300a2, #fffb009c, #48ff007f, #00ffd57e, #002aff85, #7b00ff8d, #ff00c87c, #ff0000ac);
-            border-radius: 5px; "> {{user}} </span>! 
+        <h1>Welcome &nbsp;<span style="
+            font-style: italic; font-size:50px;"> {{user}} </span>! 
         </h1>
     </header>
 
@@ -56,12 +55,12 @@
 
             <div class="q-registered">
                 <div class="q-reg">
-                {% for file in files %}
-                    <a href="{{file}}" style="color: black; font-style: italic;"  > {{file.split('.')[0]}} </a>
-                    <input type="checkbox" name="{{ file+'_selected' }}">
-                    <br/>
-                {% endfor %}
-                </div>
+            {% for file in files %}
+                <input type="checkbox" name="{{ file[0]+'_selected' }}">
+                    <a href="{{ file[0] }}" style="color: black; font-style: oblique;" >{{ file[0].split('.')[0] }}</a>
+                    <h7>&nbsp;Tags : {% for tag in file[2] or [] %} { {{ tag }} }{% endfor %}<br/></h7>
+            {% endfor %}
+            </div>
             </div>
 
             <div class="py-5">
