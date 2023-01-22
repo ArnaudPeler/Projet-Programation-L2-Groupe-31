@@ -14,7 +14,7 @@ import mistune
 from markdown import particular_markdown
 from files import spawn_files, File
 from dashboard import *
-from flask_weasyprint import HTML, render_pdf
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(os.path.split(__file__)[0], 'database.db')
@@ -134,16 +134,16 @@ def dashboard():
             case SubmitType.SEARCH:
                 session['filtered_user_files'] = filter_files(session['user_files'], dash_form.search_text.data, dash_form.select_tag.data)
             case SubmitType.AGGREGATE:
-                session['preview']=''
+                session['preview']=""
                 liste_fichier=get_selected_files(request.form)
                 for fichier in liste_fichier:
                     f=open(fichier[1] ,'r')
-                    session["preview"]+=particular_markdown(f.read())
-                if session["preview"]=='':
-                    return render_template('print.html', body='<h1>Pas de question</h1>')
+                    session["preview"]+="<div id='question'>"+particular_markdown(sans_tag(f.read()))+"</div>"
+                if session["preview"]=="":
+                    return render_template('print.html', body='<h1>Pas de question ou questions vide</h1>')
                 else:
                     html=render_template('print.html',body=session["preview"] )
-                    return render_pdf(HTML(string=html))
+                    return html
             case SubmitType.DELETE:
                 session['filtered_user_files'] = []
                 delete_files(get_selected_files(request.form))
@@ -171,7 +171,7 @@ def editor(file):
     else:
         with open(file_path, 'r') as markdown_file:
             form.markdown_text.data = markdown_file.read()
-    html_content = particular_markdown(form.markdown_text.data)
+    html_content = particular_markdown(sans_tag(form.markdown_text.data))
 
     return render_template('editor.html', render=html_content, form=form)
 

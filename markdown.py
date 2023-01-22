@@ -57,6 +57,7 @@ def sans_tag(markdown):
             text_sansTag=re.sub("(@(.)*)*\n", "", text_sansTag,count=1)
     return text_sansTag
     #previousSibling
+   #{% extends 'base.html' %} 
 
 
 particular_markdown=mistune.create_markdown(renderer=particularBlock_renderer())
