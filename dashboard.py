@@ -130,7 +130,7 @@ def filter_files(files: list[str], name_filter: str, tag_filter: str):
     filtered_files = []
     for file in files:
         print(file[2], '\n', tag_filter)
-        if name_filter in file[0] and ((tag_filter in file[2] or []) if tag_filter != 'All Tags' else True):
+        if name_filter in file[0] and ((tag_filter in (file[2] or [])) if tag_filter != 'All Tags' else True):
             filtered_files.append(file)
     return filtered_files
 
