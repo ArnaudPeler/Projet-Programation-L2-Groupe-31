@@ -8,6 +8,12 @@ from wtforms import StringField, SubmitField, SearchField, SelectField
 from files import File, spawn_file, get_file_from_name
 from markdown import detect_tag
 
+def detect_tag(markdown_content:str) -> list[str]:
+    first_line = markdown_content.split('\n')[0]
+    if '@' in first_line:
+        return first_line.split('@')[1::]
+    else:
+        return []
 
 def get_tags(files: list[File]) -> list[str]:
     """
@@ -113,7 +119,8 @@ def refresh_tags():
         with open(each[1], 'r') as file:
             tags = detect_tag(file.read())
 
-        if set(tags) != set(each[2]):
+        print()
+        if set(tags) != set(each[2] or []):
             # Enlever each de session['user_files'] :
             session['user_files'] = [file for file in session['user_files'] if file != each]
             # Rajouter each actualisé dans session['user_files'] :
