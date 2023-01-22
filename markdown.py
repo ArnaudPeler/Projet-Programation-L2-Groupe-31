@@ -5,6 +5,11 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
 def detect_tag(markdown_content:str) -> list[str]:
+    """
+
+    :param makrdown_content: Le contenu d'une note markdown
+    :return: La liste des tags/étiquettes de la note
+    """
     first_line = markdown_content.split('\n')[0]
     if '@' in first_line:
         return first_line.split('@')[1::]
