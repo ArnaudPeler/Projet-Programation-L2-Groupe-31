@@ -14,7 +14,7 @@ import mistune
 from markdown import particular_markdown
 from files import spawn_files, File
 from dashboard import *
-from flask_weasyprint import HTML, render_pdf
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(os.path.split(__file__)[0], 'database.db')
