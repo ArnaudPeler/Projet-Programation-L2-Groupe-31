@@ -10,7 +10,8 @@ from wtforms.validators import InputRequired, Length
 from mistune import *
 from markdown import *
 import os
-from markdown import partiuclar_markdown
+import mistune
+from markdown import particular_markdown
 from files import spawn_files, File
 from dashboard import *
 
@@ -125,12 +126,21 @@ def dashboard():
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_file(dash_form.new_name.data)
+                create_note(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
             case SubmitType.AGGREGATE:
-                print(get_selected_files(request.form))
+                session['preview']=""
+                liste_fichier=get_selected_files(request.form)
+                for fichier in liste_fichier:
+                    f=open(fichier[1] ,'r')
+                    session["preview"]+="<div id='question'>"+particular_markdown(sans_tag(f.read()))+"</div>"
+                if session["preview"]=="":
+                    return render_template('print.html', body='<h1>Pas de question ou questions vide</h1>')
+                else:
+                    html=render_template('print.html',body=session["preview"] )
+                    return html
             case SubmitType.DELETE:
                 print(get_selected_files(request.form))
                 delete_files(get_selected_files(request.form))
@@ -156,7 +166,7 @@ def editor(file):
     else:
         with open(file_path, 'r') as markdown_file:
             form.markdown_text.data = markdown_file.read()
-    html_content = partiuclar_markdown(form.markdown_text.data)
+    html_content = particular_markdown(sans_tag(form.markdown_text.data))
 
     return render_template('editor.html', render=html_content, form=form)
 

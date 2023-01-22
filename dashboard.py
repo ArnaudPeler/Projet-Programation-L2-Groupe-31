@@ -7,6 +7,7 @@ from wtforms import StringField, SubmitField, SearchField, SelectField
 
 
 from files import File, spawn_file, get_file_from_name
+from markdown import detect_tag
 def get_tags(files: list[File]) -> list[str]:
     """
 
@@ -62,7 +63,7 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.DELETE
 
 
-def create_file(name) -> None:
+def create_note(name) -> None:
     """
     Une fonction pour créer une note markdown
     :param name: nom de la nouvelle note
@@ -79,6 +80,11 @@ def create_file(name) -> None:
             flash("A question with this name already exist!")
 
 def delete_files(files: list[File]) -> None:
+    """
+    Une fonction pour supprimer des fichier
+    :param files: La liste des fichier à supprimer
+    :return: None
+    """
     for file in files:
         session['user_files'] = [each for each in session['user_files'] if each != file] # La session qui casse les couilles
 
@@ -97,6 +103,15 @@ def get_selected_files(request_form) -> list[File]:
 
     return [get_file_from_name(file) for file in file_list]
 
+def refresh_tags() -> None:
+    """
+    Une fonction qui rafraichit les tags des notes markdown
+    """
+    for each in session['user_files']:
+        with open(each[1], 'r') as file:
+            markdown_text = file.read()
+        each[2] = detect_tag(markdown_text)
+
 
 class FilterType(Enum):
     TAG = 'Tag'
@@ -110,4 +125,3 @@ def filter(files: list[str], filter_list: list[Filter]):
     filtered_files = []
     for each in files:
         pass
-
