@@ -8,13 +8,6 @@ from wtforms import StringField, SubmitField, SearchField, SelectField
 from files import File, spawn_file, get_file_from_name
 from markdown import detect_tag
 
-def detect_tag(markdown_content:str) -> list[str]:
-    first_line = markdown_content.split('\n')[0]
-    if '@' in first_line:
-        return first_line.split('@')[1::]
-    else:
-        return []
-
 def get_tags(files: list[File]) -> list[str]:
     """
 
@@ -81,6 +74,7 @@ def create_note(name) -> None:
     else:
         try:
             with open(os.path.join(session['user_folder'], name + '.md'), 'x'):
+                # Rajouter each actualisé dans session['user_files'] :
                 session['user_files'] = session['user_files'] + [spawn_file(name + '.md')]  # La session qui casse les couilles
 
         except FileExistsError:
@@ -89,11 +83,12 @@ def create_note(name) -> None:
 
 def delete_files(files: list[File]) -> None:
     """
-    Une fonction pour supprimer des fichier
-    :param files: La liste des fichier à supprimer
+    Une fonction pour supprimer des fichiers
+    :param files: La liste des fichiers à supprimer
     :return: None
     """
     for file in files:
+        # Enlever file de session['user_files'] :
         session['user_files'] = [each for each in session['user_files'] if each != file]  # La session qui casse les couilles
         os.unlink(file[1])
 
@@ -113,18 +108,28 @@ def get_selected_files(request_form) -> list[File]:
 
 
 def refresh_tags():
+    """
+    Une fonction pour rafraichir les tags dans le dashboard
+    """
     for each in session['user_files']:
         with open(each[1], 'r') as file:
             tags = detect_tag(file.read())
-
-        if set(tags) != set(each[2] or []):
+        print(tags, each[2])
+        if set(tags or []) != set(each[2] or []):
             # Enlever each de session['user_files'] :
             session['user_files'] = [file for file in session['user_files'] if file != each]
             # Rajouter each actualisé dans session['user_files'] :
             session['user_files'] = session['user_files'] + [spawn_file(each[0])]
 
 
-def filter_files(files: list[str], name_filter: str, tag_filter: str):
+def filter_files(files: list[str], name_filter: str, tag_filter: str) -> list[File]:
+    """
+    Une fonction pour filtrer les notes markdown par non ou par tag
+    :param files: La liste de fichier à trier
+    :param name_filter: le nom par lequel filtrer la liste
+    :param tag_filter: le tag par lequel filtrer la liste
+    :return: La liste filtrée
+    """
     filtered_files = []
     for file in files:
         if name_filter in file[0] and ((tag_filter in (file[2] or [])) if tag_filter != 'All Tags' else True):
