@@ -5,7 +5,7 @@ from flask_login import UserMixin, login_user, login_required, LoginManager, log
 from flask_bcrypt import Bcrypt
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SearchField, SelectField
+from wtforms import PasswordField, TextAreaField, SearchField, SelectField
 from wtforms.validators import InputRequired, Length
 from mistune import *
 from markdown import *
@@ -14,7 +14,6 @@ import mistune
 from markdown import particular_markdown
 from files import spawn_files, File
 from dashboard import *
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(os.path.split(__file__)[0], 'database.db')
@@ -26,6 +25,10 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+try:
+    os.mkdir(os.path.join(os.path.split(__file__)[0], 'users'))
+except:
+    pass
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -72,7 +75,7 @@ def login():
                 session['user_folder'] = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
                 # user_files = spawn_files(markdown_files in user_folder)
                 session['user_files'] = spawn_files([file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md'])
-                session['filters'] = []
+                session['filtered_user_files'] = []
 
                 return redirect(url_for('dashboard'))
             else:

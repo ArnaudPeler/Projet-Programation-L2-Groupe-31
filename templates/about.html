@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
-{% block style%}
 
+{% block title %}About{% endblock%}
+{% block style%}
+    <style>
+        .container{
+            color:white;
+            margin-top: 20px;
+        
+        }
+    </style>
 {% endblock%}
 {% block content %}
 <div class="container">
-    <div class="pt-5" text-white>
-        <header class="py-5 mt-5">
-            <div class="display-4 font-weight-bold h1">The student</div>
-        </header>
-    </div>
+nique ta mere
 <div class="sub_div">
     <div class="navbar">
         <a href="{{url_for('home')}}">Home</a>
