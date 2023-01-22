@@ -505,4 +505,18 @@ button{
                 border-radius: 10px;
             }
         
+
+            .btn-log7{
+                width: 120px;
+            height: 30px;
+            border: none;
+            outline: none;
+            color: #fff;
+            display: inline;
+            font-size: 35;
+            background: #111;
+            cursor: pointer;
+            margin-top: 25px;;
+            border-radius: 10px;
+            }
         
