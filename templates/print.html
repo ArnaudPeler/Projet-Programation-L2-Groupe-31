@@ -2,20 +2,9 @@
     {% block link%}
         <script src="https://unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script>
         <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-svg.js"></script>
-        <link rel="stylesheet" href="{{url_for('static', filename='/css/colorful_stylecode.css')}}"/><script>
-            function impression(block){
-                var questionnaire = document.getElementById(block);
-                var fenetre_impression = window.open("", "title", "attributes");
-                fenetre_impression.document.write( "<html><head><title></title>" );
-                fenetre_impression.document.write("<link rel='stylesheet' href=\"{{url_for('static', filename='/css/colorful_stylecode.css')}}\" media='print'/>");
-                fenetre_impression.document.write( "</head><body>" );
-                fenetre_impression.document.write(questionnaire.innerHTML);
-                fenetre_impression.document.write( "</body>" );
-                fenetre_impression.document.close();
-                fenetre_impression.focus();
-                fenetre_impression.print();
-                fenetre_impression.close();
-        }
+        <link rel="stylesheet" href="{{url_for('static', filename='/css/colorful_stylecode.css')}}"/>
+        <link rel="stylesheet" href="{{url_for('static', filename='/css/colorful_stylecode.css')}}" media="print"/>
+        <script>
         </script>
         {% endblock %}
         {% block title %}Preview{% endblock %}
