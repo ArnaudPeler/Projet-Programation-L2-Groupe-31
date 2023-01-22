@@ -1,13 +1,13 @@
 import os.path
-from typing import NamedTuple
+from typing import NamedTuple, Tuple
 from flask import session
 from markdown import detect_tag
 
 
 class File(NamedTuple):
-    name: str
-    path: str
-    tags: list[str]
+    name: str # ou File[0]
+    path: str # ou File[1]
+    tags: list[str] # ou File[2]
 
 
 def spawn_file(_name: str) -> File:
