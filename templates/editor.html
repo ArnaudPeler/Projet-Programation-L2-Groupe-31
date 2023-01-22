@@ -17,6 +17,7 @@
         {% block title %}Editor{% endblock %}
 
     {% block content %}
+    <div class="w3-container w3-center animate-top2">
     <div class="editor">
         <form method="POST">
             <label for="markdown_text" style=" color: white; margin: 5px; font-size:20px;">Rédigez votre question</label>
@@ -34,4 +35,5 @@
         </form>
 
         <div class="affichage" style="color: black;">{{render|safe}}</div>
+        </div>
     {% endblock %}
