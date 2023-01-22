@@ -145,7 +145,7 @@ def dashboard():
                     html=render_template('print.html',body=session["preview"] )
                     return html
             case SubmitType.DELETE:
-                print(get_selected_files(request.form))
+                session['filtered_user_files'] = []
                 delete_files(get_selected_files(request.form))
                 return redirect(url_for('dashboard'))
 
