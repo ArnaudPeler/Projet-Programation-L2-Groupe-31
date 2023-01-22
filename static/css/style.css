@@ -33,12 +33,7 @@ a {
 h6{
     color:red;
     font-size:100%;
-<<<<<<< HEAD
     text-shadow: 1px 1px 3px #c61414;
-    position: fixed;
-=======
-    text-shadow: 1px 1px 3px #c61414;   
->>>>>>> master
     top: 45%;
 }
 
@@ -220,10 +215,11 @@ button{
     .div-bot{
         position: fixed;
         left: 75%;
-        bottom: 20px;
+        bottom: 10px;
         transform: translate(-50%, -50%);
         margin: 0 auto;
     }
+
 
     .div-top{
         position: fixed;
@@ -356,8 +352,15 @@ button{
                 cursor: pointer;
                 position: relative;
                 border-radius: 10px;
-                
-                
+                    
+            }
+
+            .div-bot{
+                position: relative;
+                left: 75%;
+                bottom: 50px;
+                transform: translate(-50%, -50%);
+                margin: 0 auto;
             }
         }
         .form-ctrl{        
@@ -459,8 +462,47 @@ button{
             cursor: pointer;
             margin-top: 25px;;
             border-radius: 10px;
-            
-            
+                
         }
+        .btn-log5:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000ac, #ff7300a2, #fffb009c, #48ff007f, #00ffd57e, #002aff85, #7b00ff8d, #ff00c87c, #ff0000ac);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+            }
+        
+        .btn-log5:active {
+                color: #000
+            }
+        
+        .btn-log5:active:after {
+                background: transparent;
+            }
+        
+        .btn-log5:hover:before {
+                opacity: 1;
+            }
+        
+        .btn-log5:after {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: #111;
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+            }
         
         
