@@ -139,5 +139,5 @@ class Filter(NamedTuple):
 
 def filter(files: list[str], filter_list: list[Filter]):
     filtered_files = []
-    for file in files:
+    for each in files:
         pass

@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40b7b099-2a56-4a54-a153-98b0c6ca7934" name="Changes" comment="refresh_tags() 4 (spoiler : ça marchait pas 2)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/12345/new_question.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/12345/question_2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/12345/question_3.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/12345/question_4.md" beforeDir="false" />
+    <list default="true" id="40b7b099-2a56-4a54-a153-98b0c6ca7934" name="Changes" comment="remove merge splatter">
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/admin/aa.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/bfqb.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/fezFER.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/java.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/ml,m.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/vmrqoihgrmqoi’.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/vqervq.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/azerty/vqevrq.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +58,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Flask server.Projet-Programation-L2-Groupe-31">
+  <component name="RunManager" selected="Python.Projet-Programation-L2-Groupe-31">
     <configuration name="Projet-Programation-L2-Groupe-31" type="PythonConfigurationType" factoryName="Python">
       <module name="Projet-Programation-L2-Groupe-31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,23 +98,7 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Projet-Programation-L2-Groupe-31" type="Python.FlaskServer">
-      <module name="Projet-Programation-L2-Groupe-31" />
-      <option name="target" value="$PROJECT_DIR$/app.py" />
-      <option name="targetType" value="PATH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Flask server.Projet-Programation-L2-Groupe-31" />
       <item itemvalue="Flask server.Flask (app.py)" />
       <item itemvalue="Python.Projet-Programation-L2-Groupe-31" />
     </list>
@@ -142,8 +114,6 @@
       <workItem from="1674228701371" duration="1761000" />
       <workItem from="1674233815629" duration="5637000" />
       <workItem from="1674240101286" duration="15655000" />
-      <workItem from="1674394010654" duration="10137000" />
-      <workItem from="1674406097044" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="dashboard.py added">
       <created>1674229861882</created>
@@ -278,76 +248,17 @@
       <option name="project" value="LOCAL" />
       <updated>1674255318052</updated>
     </task>
-    <task id="LOCAL-00020" summary="revert parce que tout était cassé">
-      <created>1674395467987</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1674395467987</updated>
-    </task>
-    <task id="LOCAL-00021" summary="revert parce que tout était cassé 2">
-      <created>1674395528608</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1674395528608</updated>
-    </task>
-    <task id="LOCAL-00022" summary="des trucs pas important (modifier le nom d'une fonction)">
-      <created>1674397104178</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1674397104178</updated>
-    </task>
-    <task id="LOCAL-00023" summary="refresh_tags()">
-      <created>1674401028685</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1674401028685</updated>
-    </task>
-    <task id="LOCAL-00024" summary="refresh_tags() in app.py">
-      <created>1674401301131</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1674401301131</updated>
-    </task>
-    <task id="LOCAL-00025" summary="supr refresh_tags()">
-      <created>1674402040630</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1674402040630</updated>
-    </task>
-    <task id="LOCAL-00026" summary="refresh_tags() 2 (qui marche j'espère)">
-      <created>1674403947469</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1674403947469</updated>
-    </task>
-    <task id="LOCAL-00027" summary="refresh_tags() 3 (spoiler : ça marchait pas)">
-      <created>1674404125259</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1674404125259</updated>
-    </task>
-    <task id="LOCAL-00028" summary="refresh_tags() 4 (spoiler : ça marchait pas 2)">
-      <created>1674405754757</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1674405754757</updated>
-    </task>
-    <option name="localTasksCounter" value="29" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="dashboard.py added" />
+    <MESSAGE value="dashboard.py modify" />
+    <MESSAGE value="ça marche toujours" />
+    <MESSAGE value="get_questions_to_aggregate" />
     <MESSAGE value="aggregate_button" />
     <MESSAGE value="docs" />
     <MESSAGE value="dashboard_bare.html" />
@@ -363,20 +274,10 @@
     <MESSAGE value="files.py" />
     <MESSAGE value="files.py update and refactor" />
     <MESSAGE value="remove merge splatter" />
-    <MESSAGE value="nothing" />
-    <MESSAGE value="revert parce que tout était cassé" />
-    <MESSAGE value="revert parce que tout était cassé 2" />
-    <MESSAGE value="des trucs pas important (modifier le nom d'une fonction)" />
-    <MESSAGE value="refresh_tags()" />
-    <MESSAGE value="refresh_tags() in app.py" />
-    <MESSAGE value="supr refresh_tags()" />
-    <MESSAGE value="refresh_tags() 2 (qui marche j'espère)" />
-    <MESSAGE value="refresh_tags() 3 (spoiler : ça marchait pas)" />
-    <MESSAGE value="refresh_tags() 4 (spoiler : ça marchait pas 2)" />
-    <option name="LAST_COMMIT_MESSAGE" value="refresh_tags() 4 (spoiler : ça marchait pas 2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove merge splatter" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Projet_Programation_L2_Groupe_31$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1674239446173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Projet_Programation_L2_Groupe_31$Projet_Programation_L2_Groupe_31.coverage" NAME="Projet-Programation-L2-Groupe-31 Coverage Results" MODIFIED="1674405481703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Projet_Programation_L2_Groupe_31$Projet_Programation_L2_Groupe_31.coverage" NAME="Projet-Programation-L2-Groupe-31 Coverage Results" MODIFIED="1674255651104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
