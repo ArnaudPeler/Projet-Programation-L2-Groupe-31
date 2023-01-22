@@ -8,6 +8,10 @@ from wtforms import StringField, SubmitField, SearchField, SelectField
 from files import File, spawn_file, get_file_from_name
 from markdown import detect_tag
 
+def detect_tag(markdown_content:str) -> list[str]:
+    first_line = markdown_content.split('\n')[0]
+    if '@' in first_line:
+        return first_line.split('@')[1::]
 
 def get_tags(files: list[File]) -> list[str]:
     """
