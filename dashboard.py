@@ -95,7 +95,6 @@ def delete_files(files: list[File]) -> None:
     """
     for file in files:
         session['user_files'] = [each for each in session['user_files'] if each != file]  # La session qui casse les couilles
-
         os.unlink(file[1])
 
 
@@ -118,7 +117,6 @@ def refresh_tags():
         with open(each[1], 'r') as file:
             tags = detect_tag(file.read())
 
-        print()
         if set(tags) != set(each[2] or []):
             # Enlever each de session['user_files'] :
             session['user_files'] = [file for file in session['user_files'] if file != each]
@@ -129,7 +127,6 @@ def refresh_tags():
 def filter_files(files: list[str], name_filter: str, tag_filter: str):
     filtered_files = []
     for file in files:
-        print(file[2], '\n', tag_filter)
         if name_filter in file[0] and ((tag_filter in (file[2] or [])) if tag_filter != 'All Tags' else True):
             filtered_files.append(file)
     return filtered_files

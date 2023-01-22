@@ -134,18 +134,18 @@ def dashboard():
             case SubmitType.SEARCH:
                 session['filtered_user_files'] = filter_files(session['user_files'], dash_form.search_text.data, dash_form.select_tag.data)
             case SubmitType.AGGREGATE:
-                session['preview']=''
+                session['preview']=""
                 liste_fichier=get_selected_files(request.form)
                 for fichier in liste_fichier:
                     f=open(fichier[1] ,'r')
-                    session["preview"]+=particular_markdown(f.read())
-                if session["preview"]=='':
-                    return render_template('print.html', body='<h1>Pas de question</h1>')
+                    session["preview"]+="<div id='question'>"+particular_markdown(sans_tag(f.read()))+"</div>"
+                if session["preview"]=="":
+                    return render_template('print.html', body='<h1>Pas de question ou questions vide</h1>')
                 else:
                     html=render_template('print.html',body=session["preview"] )
-                    return render_pdf(HTML(string=html))
+                    return html
             case SubmitType.DELETE:
-                print(get_selected_files(request.form))
+                session['filtered_user_files'] = []
                 delete_files(get_selected_files(request.form))
                 return redirect(url_for('dashboard'))
 
