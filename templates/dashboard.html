@@ -57,7 +57,7 @@
                 <div class="q-reg">
             {% for file in files %}
                 <input type="checkbox" name="{{ file[0]+'_selected' }}">
-                    <a href="{{ file }}" style="color: black; font-style: oblique;" >{{ file.split('.')[0] }}</a>
+                    <a href="{{ file[0] }}" style="color: black; font-style: oblique;" >{{ file[0].split('.')[0] }}</a>
                     <h7>&nbsp;Tags : {% for tag in file[2] or [] %} { {{ tag }} }{% endfor %}<br/></h7>
             {% endfor %}
             </div>
