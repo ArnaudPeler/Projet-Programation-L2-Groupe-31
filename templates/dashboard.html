@@ -32,8 +32,8 @@
     {% block title %} Dashboard {% endblock %}
 
     {% block content %}
-
-    <header class="py-5 mt-5">
+    <div class="w3-container w3-center animate-top2">
+    <header class="mt-5">
         <h1>Welcome &nbsp;<span style="
             font-style: italic; font-size:50px;"> {{user}} </span>! 
         </h1>
@@ -57,7 +57,7 @@
                 <div class="q-reg">
             {% for file in files %}
                 <input type="checkbox" name="{{ file[0]+'_selected' }}">
-                    <a href="{{ file }}" style="color: black; font-style: oblique;" >{{ file.split('.')[0] }}</a>
+                    <a href="{{ file[0] }}" style="color: black; font-style: oblique;" >{{ file[0].split('.')[0] }}</a>
                     <h7>&nbsp;Tags : {% for tag in file[2] or [] %} { {{ tag }} }{% endfor %}<br/></h7>
             {% endfor %}
             </div>
@@ -76,15 +76,13 @@
             </div>
     <div>
     </form>
-
-
-
+</div>
     <div class="div-bot">
-        <div class="row align-self-center">
-            <button class="btn-log" type="button"><a href="{{url_for('logout')}}">Press here to logout</a></button>
+        <div class="row">
+            <button class="btn-log"><a href="{{url_for('logout')}}"> Logout</a></button>
         </div>
-    </div>`
-
+    </div>
+    
     {% endblock %}
     
 
