@@ -58,7 +58,7 @@ class LoginForm(FlaskForm):
 
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 
