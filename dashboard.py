@@ -62,7 +62,7 @@ def get_submit_type(request_form) -> SubmitType:
         return SubmitType.DELETE
 
 
-def create_file(name) -> None:
+def create_note(name) -> None:
     """
     Une fonction pour créer une note markdown
     :param name: nom de la nouvelle note
@@ -79,6 +79,11 @@ def create_file(name) -> None:
             flash("A question with this name already exist!")
 
 def delete_files(files: list[File]) -> None:
+    """
+    Une fonction pour supprimer des fichier
+    :param files: La liste des fichier à supprimer
+    :return: None
+    """
     for file in files:
         session['user_files'] = [each for each in session['user_files'] if each != file] # La session qui casse les couilles
 
@@ -110,4 +115,3 @@ def filter(files: list[str], filter_list: list[Filter]):
     filtered_files = []
     for each in files:
         pass
-

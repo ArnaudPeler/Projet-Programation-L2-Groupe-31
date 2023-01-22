@@ -126,7 +126,7 @@ def dashboard():
     if dash_form.validate_on_submit():
         match get_submit_type(request.form):
             case SubmitType.NEW:
-                create_file(dash_form.new_name.data)
+                create_note(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
                 pass
