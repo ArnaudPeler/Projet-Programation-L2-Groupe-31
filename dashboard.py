@@ -103,15 +103,6 @@ def get_selected_files(request_form) -> list[File]:
 
     return [get_file_from_name(file) for file in file_list]
 
-def refresh_tags() -> None:
-    """
-    Une fonction qui rafraichit les tags des notes markdown
-    """
-    for each in session['user_files']:
-        with open(each[1], 'r') as file:
-            markdown_text = file.read()
-        each[2] = detect_tag(markdown_text)
-
 
 class FilterType(Enum):
     TAG = 'Tag'

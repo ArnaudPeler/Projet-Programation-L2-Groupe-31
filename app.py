@@ -120,7 +120,6 @@ def contact():
 @app.route('/dashboard/', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    refresh_tags()
 
     dash_form = DashForm()
     dash_form.select_tag.choices.extend(get_tags(session['user_files']))
