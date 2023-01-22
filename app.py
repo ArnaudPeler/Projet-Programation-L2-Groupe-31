@@ -15,7 +15,6 @@ from markdown import particular_markdown
 from files import spawn_files, File
 from dashboard import *
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(os.path.split(__file__)[0], 'database.db')
 app.config['SECRET_KEY'] = 'a-secret-key-here'
@@ -26,6 +25,10 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+try:
+    os.mkdir(os.path.join(os.path.split(__file__)[0], 'users'))
+except:
+    pass
 
 @login_manager.user_loader
 def load_user(user_id):
