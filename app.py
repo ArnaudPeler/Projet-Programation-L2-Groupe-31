@@ -131,7 +131,7 @@ def dashboard():
                 create_note(dash_form.new_name.data)
                 return redirect(url_for('dashboard'))
             case SubmitType.SEARCH:
-                pass
+                session['filtered_user_files'] = filter_files(session['user_files'], dash_form.search_text.data, dash_form.select_tag.data)
             case SubmitType.AGGREGATE:
                 session['preview']=''
                 liste_fichier=get_selected_files(request.form)
@@ -148,8 +148,9 @@ def dashboard():
                 delete_files(get_selected_files(request.form))
                 return redirect(url_for('dashboard'))
 
+    _files = session.get('filtered_user_files') if session.get('filtered_user_files') else session['user_files']
 
-    return render_template('dashboard.html', user=session['user'], files=session['user_files'], form=dash_form)
+    return render_template('dashboard.html', user=session['user'], files=_files, form=dash_form)
 
 
 class EditorForm(FlaskForm):
@@ -174,5 +175,5 @@ def editor(file):
     return render_template('editor.html', render=html_content, form=form)
 
 if __name__ == '__main__':
-    app.run(port=8888, debug=True)
+    app.run(port=5000, debug=True)
 
