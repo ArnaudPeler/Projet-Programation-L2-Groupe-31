@@ -171,7 +171,7 @@ def editor(file):
     else:
         with open(file_path, 'r') as markdown_file:
             form.markdown_text.data = markdown_file.read()
-    html_content = particular_markdown(form.markdown_text.data)
+    html_content = particular_markdown(sans_tag(form.markdown_text.data))
 
     return render_template('editor.html', render=html_content, form=form)
 

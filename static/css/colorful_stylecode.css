@@ -69,7 +69,16 @@
 .highlight .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */
 
 @media print{
-    .highlight .hll { background-color: #ffffcc }
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    body {
+        padding-top: 72px;
+        padding-bottom: 72px ;
+    }
+    }
+.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #ffffff; }
 .highlight .c { color: #888888 } /* Comment */
 .highlight .err { color: #FF0000; background-color: #FFAAAA } /* Error */
@@ -139,4 +148,4 @@
 .highlight .vm { color: #996633 } /* Name.Variable.Magic */
 .highlight .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */
 
-} 
+ 

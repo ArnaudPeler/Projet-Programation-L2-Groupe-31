@@ -1,4 +1,4 @@
-@mermaid @ pain @code
+@mermaid @ pain
 
 | Syntax      | Description |
 | ----------- | ----------- |
