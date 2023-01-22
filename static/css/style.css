@@ -33,11 +33,10 @@ a {
 h6{
     color:red;
     font-size:100%;
-    text-shadow: 1px 1px 3px #c61414;
- 
+    text-shadow: 1px 1px 3px #c61414;   
     top: 45%;
- 
 }
+
 #bottom{
     position: absolute;
     bottom:0.8em;       

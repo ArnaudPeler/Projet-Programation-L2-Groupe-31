@@ -32,7 +32,7 @@
     {% block title %} Dashboard {% endblock %}
 
     {% block content %}
-
+    <div class="w3-container w3-center animate-top2">
     <header class="mt-5">
         <h1>Welcome &nbsp;<span style="
             font-style: italic; font-size:50px;"> {{user}} </span>! 
@@ -76,15 +76,13 @@
             </div>
     <div>
     </form>
-
-
-
+</div>
     <div class="div-bot">
         <div class="row">
             <button class="btn-log"><a href="{{url_for('logout')}}"> Logout</a></button>
         </div>
-    </div>`
-
+    </div>
+    
     {% endblock %}
     
 
