@@ -5,7 +5,7 @@ from flask_login import UserMixin, login_user, login_required, LoginManager, log
 from flask_bcrypt import Bcrypt
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SearchField, SelectField
+from wtforms import PasswordField, TextAreaField, SearchField, SelectField
 from wtforms.validators import InputRequired, Length
 from mistune import *
 from markdown import *
