@@ -115,7 +115,7 @@ def refresh_tags():
 
         if set(tags) != set(each[2]):
             # Enlever each de session['user_files'] :
-            session['user_files'] = [file for file in session['user_file'] if file != each]
+            session['user_files'] = [file for file in session['user_files'] if file != each]
             # Rajouter each actualisé dans session['user_files'] :
             session['user_files'] = session['user_files'] + [spawn_file(each[0])]
 
