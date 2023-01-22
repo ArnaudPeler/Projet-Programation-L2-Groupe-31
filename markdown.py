@@ -13,6 +13,8 @@ def detect_tag(markdown_content:str) -> list[str]:
     first_line = markdown_content.split('\n')[0]
     if '@' in first_line:
         return first_line.split('@')[1::]
+    else:
+        []
 
 def mermaid_html(code_mermaid):
     return "<pre class='mermaid'>"+code_mermaid+"</pre>"

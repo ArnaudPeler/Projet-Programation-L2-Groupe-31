@@ -75,7 +75,7 @@ def login():
                 session['user_folder'] = os.path.join(os.path.split(__file__)[0], 'users', session['user'])
                 # user_files = spawn_files(markdown_files in user_folder)
                 session['user_files'] = spawn_files([file for file in os.listdir(session['user_folder']) if file.split('.')[1] == 'md'])
-                session['filters'] = []
+                session['filtered_user_files'] = []
 
                 return redirect(url_for('dashboard'))
             else:

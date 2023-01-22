@@ -114,8 +114,8 @@ def refresh_tags():
     for each in session['user_files']:
         with open(each[1], 'r') as file:
             tags = detect_tag(file.read())
-
-        if set(tags) != set(each[2] or []):
+        print(tags, each[2])
+        if set(tags or []) != set(each[2] or []):
             # Enlever each de session['user_files'] :
             session['user_files'] = [file for file in session['user_files'] if file != each]
             # Rajouter each actualisé dans session['user_files'] :
