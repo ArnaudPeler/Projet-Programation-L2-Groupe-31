@@ -22,12 +22,12 @@
                 {% for message in get_flashed_messages() %}
                 <h6>{{ message }}</h6>
                 {% endfor %}
-                <form method="POST" action="">
+                <form method="POST" action="" class="form-group">
                     {{ form.hidden_tag() }}
                     {{ form.username(class="form-control mb-2") }}
                     {{ form.password(class="form-control mb-5") }}
                     <div class="btn-log ">
-                        {{ form.submit(class="btn-log mb-4")}}
+                        {{ form.submit(class="btn-log text-center")}}
                     </div>
                 </form>
             </div>
