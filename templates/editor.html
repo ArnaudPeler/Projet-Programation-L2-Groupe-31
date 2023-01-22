@@ -17,6 +17,7 @@
         {% block title %}Editor{% endblock %}
 
     {% block content %}
+    <div class="w3-container w3-center animate-top2">
     <div class="editor">
         <form method="POST">
             <label for="markdown_text" style=" color: white; margin: 5px; font-size:20px;">Rédigez votre question</label>
@@ -28,9 +29,11 @@
             </div>
                 <div class="save">
             {{ form.submit(class_="btn-log5") }}
+            <button class="btn-log5" type="button"><a href="{{url_for('dashboard')}}" class="link">Return</a></button><br>
             </div>
             </div>
         </form>
 
         <div class="affichage" style="color: black;">{{render|safe}}</div>
+        </div>
     {% endblock %}
