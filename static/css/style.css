@@ -122,7 +122,7 @@ button{
         100% { background-position: 0 0; }
     }
     .sub_div {
-        position: absolute;
+        position: relative;
         bottom: 10px;
         font: arial;
         color:white;
@@ -133,7 +133,7 @@ button{
         overflow: hidden;
         position: fixed;
         bottom: 0;
-        margin: 0%;
+        margin: 0 auto;
         width: 78%;
         
     }
@@ -519,4 +519,5 @@ button{
             margin-top: 25px;;
             border-radius: 10px;
             }
+        
         
