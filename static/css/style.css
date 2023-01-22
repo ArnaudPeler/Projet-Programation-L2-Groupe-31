@@ -34,7 +34,7 @@ h6{
     color:red;
     font-size:100%;
     text-shadow: 1px 1px 3px #c61414;
- 
+    position: fixed;
     top: 45%;
  
 }
