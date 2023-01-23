@@ -44,10 +44,10 @@ L'application permet aussi de créer des notes et de les éditer directement sur
 
 #### Quelles fonctionnalités markdown sont disponibles ?
 
-+ [Toutes les fonctionnalités de base de markdown] (https://www.markdownguide.org/basic-syntax/)
-+ [Syntax Highlighting pour le code] (https://www.markdownguide.org/extended-syntax/#syntax-highlighting)
-+ [MathJax pour les formules mathématiques (LaTeX)] (https://www.mathjax.org/)
-+ [Mermaid pour les graph] (https://mermaid.js.org/)
++ [Toutes les fonctionnalités de base de markdown](https://www.markdownguide.org/basic-syntax/)
++ [Syntax Highlighting pour le code](https://www.markdownguide.org/extended-syntax/#syntax-highlighting)
++ [MathJax pour les formules mathématiques (LaTeX)](https://www.mathjax.org/)
++ [Mermaid pour les graph](https://mermaid.js.org/)
 
 #### Comment sont gérés les tags/étiquette ?
 Les tags se définissent dans la première ligne du markdown de la question avec le caractère `@`
@@ -84,10 +84,10 @@ et sera représenté par des cases à cocher dans la version imprimable
 Sélectionnez toutes les questions que vous voulez assembler et appuyez sur le bouton `Aggregate`, vous pouvez ensuite nommer le questionnaire et l'imprimer.
 ## Authors
 
-- [@ArnaudPeler] (https://github.com/ArnaudPeler)
-- [@alderaan11] (https://github.com/alderaan11)
-- [@Mxckx9772] (https://github.com/Mxckx9772)
-- [@pchtpcht] (https://github.com/pchtpcht)
+- [@ArnaudPeler](https://github.com/ArnaudPeler)
+- [@alderaan11](https://github.com/alderaan11)
+- [@Mxckx9772](https://github.com/Mxckx9772)
+- [@pchtpcht](https://github.com/pchtpcht)
 
 ## License
 
