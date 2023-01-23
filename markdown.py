@@ -27,9 +27,9 @@ def reponse_html(block_reponse):
         if reponse!='':
             if reponse[0]=='+':
                 text_reponse=reponse.split('+ ')[1] 
-                html+="<input type='checkbox' name='trueAnswer_"+str(id_reponse)+"' id='"+str(id_reponse)+"'/><label for='"+str(id_reponse)+"'>"+text_reponse+"</label>"
+                html+="<input type='checkbox' name='trueAnswer_"+str(id_reponse)+"' id='"+str(id_reponse)+"'/><label for='"+str(id_reponse)+"'>"+text_reponse+"</label><br>"
             else:
-                html+="<input type='checkbox' id='"+str(id_reponse)+"'/><label for='"+str(id_reponse)+"'>"+reponse+"</label>"
+                html+="<input type='checkbox' id='"+str(id_reponse)+"'/><label for='"+str(id_reponse)+"'>"+reponse+"</label><br>"
             id_reponse+=1
     html+="</form>"
     return html
