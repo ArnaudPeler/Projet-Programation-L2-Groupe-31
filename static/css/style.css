@@ -31,7 +31,7 @@ a {
 }
 
 h6{
-    color:red;
+    color:rgb(246, 186, 21);
     font-size:100%;
     text-shadow: 1px 1px 3px #c61414;
     top: 45%;
@@ -362,6 +362,27 @@ button{
                 transform: translate(-50%, -50%);
                 margin: 0 auto;
             }
+            .btn-log5{
+                width: 120px;
+                height: 30px;
+                border: none;
+                outline: none;
+                color: #fff;
+                display: inline;
+                font-size: 35;
+                background: #111;
+                cursor: pointer;
+                margin-top: 25px;;
+                border-radius: 10px;
+                position:relative;      
+            }
+            .div-bot{
+                position: fixed;
+                left: 75%;
+                bottom: 10px;
+                transform: translate(-50%, -50%);
+                margin: 0 auto;
+            }
         }
         .form-ctrl{        
             width: 150px;
@@ -462,7 +483,7 @@ button{
             cursor: pointer;
             margin-top: 25px;;
             border-radius: 10px;
-                
+            position:relative;      
         }
         .btn-log5:before {
             content: '';
