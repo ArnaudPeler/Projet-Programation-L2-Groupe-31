@@ -3,7 +3,7 @@ from enum import Enum
 from typing import NamedTuple
 from flask import request, flash, session
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SearchField, SelectField
+from wtforms import StringField, SubmitField, SearchField, SelectMultipleField
 
 from files import File, spawn_file, get_file_from_name
 from markdown import detect_tag
@@ -32,7 +32,7 @@ class DashForm(FlaskForm):
     new_button = SubmitField("New Question")
     search_text = SearchField(render_kw={'placeholder': "Search"})
     search_button = SubmitField('Search')
-    select_tag = SelectField('All Tags', choices=['All Tags'])
+    select_tag = SelectMultipleField('All Tags', choices=['All Tags'])
     aggregate_button = SubmitField('Aggregate')
     delete_button = SubmitField('Delete')
 
@@ -114,7 +114,6 @@ def refresh_tags():
     for each in session['user_files']:
         with open(each[1], 'r') as file:
             tags = detect_tag(file.read())
-        print(tags, each[2])
         if set(tags or []) != set(each[2] or []):
             # Enlever each de session['user_files'] :
             session['user_files'] = [file for file in session['user_files'] if file != each]
@@ -122,9 +121,9 @@ def refresh_tags():
             session['user_files'] = session['user_files'] + [spawn_file(each[0])]
 
 
-def filter_files(files: list[str], name_filter: str, tag_filter: str) -> list[File]:
+def filter_files(files: list[File], name_filter: str, tag_filter: list[str]) -> list[File]:
     """
-    Une fonction pour filtrer les notes markdown par non ou par tag
+    Une fonction pour filtrer les notes markdown par non et/ou par tag
     :param files: La liste de fichier à trier
     :param name_filter: le nom par lequel filtrer la liste
     :param tag_filter: le tag par lequel filtrer la liste
@@ -132,7 +131,17 @@ def filter_files(files: list[str], name_filter: str, tag_filter: str) -> list[Fi
     """
     filtered_files = []
     for file in files:
-        if name_filter in file[0] and ((tag_filter in (file[2] or [])) if tag_filter != 'All Tags' else True):
+        if name_filter in file[0] and (is_tag_in(tag_filter, file)) if 'All Tags' not in tag_filter else True:
             filtered_files.append(file)
     return filtered_files
 
+def is_tag_in(tag_list: list[str], file):
+    """
+
+    :param: tag_list une liste de tag
+    :retrun: True si un des tags de la liste est tag du fichier, false sinon
+    """
+    for tag in tag_list:
+        if tag in (file[2] or []):
+            return True
+    return False
